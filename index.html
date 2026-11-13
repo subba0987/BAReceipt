@@ -2522,8 +2522,8 @@
         const rect = scrollable.getBoundingClientRect();
         const mouseY = e.clientY; 
         
-        const threshold = 150;
-        const speed = 25;
+        const threshold = 50;
+        const speed = 8;
 
         if (mouseY < rect.top + threshold) {
             scrollable.scrollTop -= speed;
