@@ -6,7 +6,7 @@
 <title>블루 아카이브 영수증 생성기</title>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
-<!--/* Version: 1.13 */-->
+<!--/* Version: 1.20 */-->
 
 
 <style>
@@ -537,20 +537,35 @@
                 <div class="input-with-unit"><input type="text" id="in-mission-hard-sweep"><span>회</span></div>
             </div>
         </div>
-        <div class="input-group">
-            <h3>메인 스토리 진행도</h3>
+		<div class="input-group">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:5px; border-bottom:2px solid #333;">
+                <h3 style="margin:0; border:none; padding:0;">메인 스토리 진행도</h3>
+                <button onclick="fillMainStoryMax()" style="padding:4px 8px; font-size:14px; background:#2b6cb0; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">참선생</button>
+            </div>
             <div id="main-story-input-container"></div>
         </div>
+        
         <div class="input-group">
-            <h3>이벤트 에피소드 진행도</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:5px; border-bottom:2px solid #333;">
+                <h3 style="margin:0; border:none; padding:0;">이벤트 에피소드 진행도</h3>
+                <button onclick="fillEventStoryMax()" style="padding:4px 8px; font-size:14px; background:#2b6cb0; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">참선생</button>
+            </div>
             <div id="event-story-input-container"></div>
         </div>
+        
 		<div class="input-group">
-            <h3>미니 스토리 진행도</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:5px; border-bottom:2px solid #333;">
+                <h3 style="margin:0; border:none; padding:0;">미니 스토리 진행도</h3>
+                <button onclick="fillMiniStoryMax()" style="padding:4px 8px; font-size:14px; background:#2b6cb0; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">참선생</button>
+            </div>
             <div id="mini-story-input-container"></div>
         </div>
+        
         <div class="input-group">
-            <h3>그룹 스토리 진행도</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:5px; border-bottom:2px solid #333;">
+                <h3 style="margin:0; border:none; padding:0;">그룹 스토리 진행도</h3>
+                <button onclick="fillGroupStoryMax()" style="padding:4px 8px; font-size:14px; background:#2b6cb0; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">참선생</button>
+            </div>
             <div id="group-story-input-container"></div>
         </div>
 		
@@ -868,8 +883,10 @@
                     <div class="tight-list" id="group-story-output-container"></div>
                 </div>
 				
-				<div class="life-sub-header">역대 콜라보 호감도 아이템</div>
-                <div class="tight-list" id="collab-output-container"></div>
+				<div id="section-collab">
+                    <div class="life-sub-header">역대 콜라보 호감도 아이템</div>
+                    <div class="tight-list" id="collab-output-container"></div>
+                </div>
             </div>
 			
 			<div class="record-section">
@@ -1240,84 +1257,84 @@
     ];
 
     const mainStoryList = [
-		{ key: 'ms_0', name: '0. 총학생회 편' },
-        { key: 'ms_1', name: '1. 대책위원회 편' },
-        { key: 'ms_2', name: '2. 태엽 감는 꽃의 파반느 편' },
-        { key: 'ms_3', name: '3. 에덴조약 편' },
-        { key: 'ms_4', name: '4. 카르바노그의 토끼 편' },
-        { key: 'ms_5', name: '5. 백화요란 편' },
-		{ key: 'ms_7', name: '6. 흘러간 시간들의 오라토리오 편' },
-        { key: 'ms_6', name: 'Final. 그리고 모든 기적이 시작 되...' }
+		{ key: 'ms_0', name: '0. 총학생회 편', defCh: 1, defEp: 10 },
+        { key: 'ms_1', name: '1. 대책위원회 편', defCh: 3, defEp: 43 },
+        { key: 'ms_2', name: '2. 태엽 감는 꽃의 파반느 편', defCh: 2, defEp: 25 },
+        { key: 'ms_3', name: '3. 에덴조약 편', defCh: 4, defEp: 27 },
+        { key: 'ms_4', name: '4. 카르바노그의 토끼 편', defCh: 2, defEp: 24 },
+        { key: 'ms_5', name: '5. 백화요란 편', defCh: 2, defEp: 28 },
+		{ key: 'ms_7', name: '6. 흘러간 시간들의 오라토리오 편', defCh: 3, defEp: 10 },
+        { key: 'ms_6', name: 'Final. 그리고 모든 기적이 시작 되...', defCh: 4, defEp: 12 }
     ];
 
     const eventStoryList = [
-		{ key: 'es_1', name: '벚꽃만발 축제대소동!' },
-        { key: 'es_2', name: '혁명의 이반 쿠팔라' },
-        { key: 'es_3', name: '여름 하늘의 위시리스트' },
-        { key: 'es_4', name: '히나 선도부장님의 여름방학!' },
-        { key: 'es_5', name: '네버랜드에서의 술래잡기' },
-        { key: 'es_6', name: '선상의 바니 체이서' },
-        { key: 'es_7', name: '227호 온천장 운영일지!' },
-        { key: 'es_8', name: '신춘광상곡 제68번' },
-        { key: 'es_9', name: '샬레의 해피♡발렌타인 순찰' },
-        { key: 'es_10', name: '코사카 와카모의 침묵과 축연' },
-        { key: 'es_11', name: '덜렁대는 수녀님과 고서관의 마술사' },
-        { key: 'es_12', name: '불인의 마음' },
-        { key: 'es_13', name: '아비도스 리조트 복구 대책위원회' },
-        { key: 'es_14', name: '출장! 백야당 바다의 집 프랜차이즈 계획' },
-        { key: 'es_15', name: '방과 후 디저트 이야기' },
-        { key: 'es_16', name: 'ON YOUR MARK @ MILLENNIUM' },
-        { key: 'es_17', name: 'Get Set, Go!' },
-        { key: 'es_18', name: '성당의 메리 크리스마스' },
-        { key: 'es_19', name: '새해의 아페리티프' },
-        { key: 'es_20', name: '거짓된 성소 공략전' },
-        { key: 'es_21', name: '아트라하시스의 방주 점령전' },
-        { key: 'es_22', name: '프레나파테스 결전' },
-        { key: 'es_23', name: '복구 작업: D.U. 시라토리구' },
-        { key: 'es_24', name: '순백의 예고장' },
-        { key: 'es_25', name: '용무동주' },
-        { key: 'es_26', name: '사라진 새우를 향한 토끼의 추적' },
-        { key: 'es_27', name: '숨겨진 유산을 찾아서' },
-        { key: 'es_28', name: '학원 동인 이야기' },
-        { key: 'es_29', name: 'Trip-Trap-Train' },
-        { key: 'es_30', name: '전뇌신춘행진곡' },
-        { key: 'es_31', name: '빛으로 나아가는 그녀들의 소야곡' },
-        { key: 'es_32', name: '0068 오페라로부터 사랑을 담아서!' },
-        { key: 'es_33', name: '와글와글하며 오손도손하게' },
-        { key: 'es_34', name: '-ive aLIVE!' },
-        { key: 'es_35', name: 'Say-Bing!' },
-        { key: 'es_36', name: 'Sheside outside' },
-        { key: 'es_37', name: '월화몽소' },
-        { key: 'es_38', name: '오욕내강' },
-        { key: 'es_39', name: 'Serenade Promenade' },
-        { key: 'es_40', name: '비밀의 미드나잇 파티 ~종이 울리는 술...' },
-        { key: 'es_41', name: 'Code: BOX 밀레니엄에 다가오는 그...' },
-        { key: 'es_42', name: '팬데믹 해저드 ~ 기적의 팬케이크 ~' },
-        { key: 'es_43', name: 'Pray-Ball! ~ 노려라! 만루 홈런 ~' },
-        { key: 'es_44', name: '하이랜더 철도 폭주 사건 ~ 그리고 기...' },
-		{ key: 'es_45', name: '백에서 피어난 한 송이 ~정정당당하...' },
-        { key: 'es_46', name: '여름 하늘의 프로미스' },
-        { key: 'es_47', name: '우리는 오컬트 연구회! ~학원의 불가사...' },
-        { key: 'es_48', name: '누구를 위한 예술인가 ~위작과 미학의 ...' },
-        { key: 'es_49', name: '마법소녀 헤비캘리버 ~에라의 야망과 ...' },
-        { key: 'es_50', name: '겨울 하늘의 르네상스 ~문화 및 교류...' },
-        { key: 'es_51', name: '불인의 길 ~패션쇼 경호 임무!의 서~' },
-        { key: 'es_52', name: '강철대륙 공략전' },
-        { key: 'es_53', name: '키보토스 · 미확인 미스테리 ~미지의 ...' },
-        { key: 'es_54', name: '람과천정' },
-		{ key: 'es_36_2', name: 'Sheside outside' },
-        { key: 'es_37_2', name: '월화몽소' },
-        { key: 'es_38_2', name: '오욕내강' },
-        { key: 'es_39_2', name: 'Serenade Promenade' },
-        { key: 'es_40_2', name: '비밀의 미드나잇 파티 ~종이 울리는 술...' },
-        { key: 'es_41_2', name: 'Code: BOX 밀레니엄에 다가오는 그...' },
-        { key: 'es_43_2', name: 'Pray-Ball! ~ 노려라! 만루 홈런 ~' },
-		{ key: 'es_45_2', name: '백에서 피어난 한 송이 ~정정당당하...' },
-		{ key: 'es_27_2', name: '숨겨진 유산을 찾아서' },
-        { key: 'es_28_2', name: '학원 동인 이야기' },
-        { key: 'es_29_2', name: 'Trip-Trap-Train' },
-        { key: 'es_30_2', name: '전뇌신춘행진곡' },
-		{ key: 'es_32_2', name: '0068 오페라로부터 사랑을 담아서!' }
+		{ key: 'es_1', name: '벚꽃만발 축제대소동!', defEp: 13 },
+        { key: 'es_2', name: '혁명의 이반 쿠팔라', defEp: 11 },
+        { key: 'es_3', name: '여름 하늘의 위시리스트', defEp: 11 },
+        { key: 'es_4', name: '히나 선도부장님의 여름방학!', defEp: 13 },
+        { key: 'es_5', name: '네버랜드에서의 술래잡기', defEp: 09 },
+        { key: 'es_6', name: '선상의 바니 체이서', defEp: 11 },
+        { key: 'es_7', name: '227호 온천장 운영일지!', defEp: 12 },
+        { key: 'es_8', name: '신춘광상곡 제68번', defEp: 20 },
+        { key: 'es_9', name: '샬레의 해피♡발렌타인 순찰', defEp: 09 },
+        { key: 'es_10', name: '코사카 와카모의 침묵과 축연', defEp: 12 },
+        { key: 'es_11', name: '덜렁대는 수녀님과 고서관의 마술사', defEp: 15 },
+        { key: 'es_12', name: '불인의 마음', defEp: 19 },
+        { key: 'es_13', name: '아비도스 리조트 복구 대책위원회', defEp: 16  },
+        { key: 'es_14', name: '출장! 백야당 바다의 집 프랜차이즈 계획', defEp: 13 },
+        { key: 'es_15', name: '방과 후 디저트 이야기', defEp: 17 },
+        { key: 'es_16', name: 'ON YOUR MARK @ MILLENNIUM', defEp: 11 },
+        { key: 'es_17', name: 'Get Set, Go!', defEp: 19 },
+        { key: 'es_18', name: '성당의 메리 크리스마스', defEp: 11 },
+        { key: 'es_19', name: '새해의 아페리티프', defEp: 15 },
+        { key: 'es_20', name: '거짓된 성소 공략전', defEp: 16 },
+        { key: 'es_21', name: '아트라하시스의 방주 점령전', defEp: 9 },
+        { key: 'es_22', name: '프레나파테스 결전', defEp: 6 },
+        { key: 'es_23', name: '복구 작업: D.U. 시라토리구', defEp: 1 },
+        { key: 'es_24', name: '순백의 예고장', defEp: 16 },
+        { key: 'es_25', name: '용무동주', defEp: 13 },
+        { key: 'es_26', name: '사라진 새우를 향한 토끼의 추적', defEp: 14 },
+        { key: 'es_27', name: '숨겨진 유산을 찾아서', defEp: 15 },
+        { key: 'es_28', name: '학원 동인 이야기', defEp: 15 },
+        { key: 'es_29', name: 'Trip-Trap-Train', defEp: 12 },
+        { key: 'es_30', name: '전뇌신춘행진곡', defEp: 11 },
+        { key: 'es_31', name: '빛으로 나아가는 그녀들의 소야곡', defEp: 10 },
+        { key: 'es_32', name: '0068 오페라로부터 사랑을 담아서!', defEp: 15 },
+        { key: 'es_33', name: '와글와글하며 오손도손하게', defEp: 16 },
+        { key: 'es_34', name: '-ive aLIVE!', defEp: 23 },
+        { key: 'es_35', name: 'Say-Bing!', defEp: 19 },
+        { key: 'es_36', name: 'Sheside outside', defEp: 21 },
+        { key: 'es_37', name: '월화몽소', defEp: 15 },
+        { key: 'es_38', name: '오욕내강', defEp: 17 },
+        { key: 'es_39', name: 'Serenade Promenade', defEp: 19 },
+        { key: 'es_40', name: '비밀의 미드나잇 파티 ~종이 울리는 술...', defEp: 15 },
+        { key: 'es_41', name: 'Code: BOX 밀레니엄에 다가오는 그...', defEp: 9 },
+        { key: 'es_42', name: '팬데믹 해저드 ~ 기적의 팬케이크 ~', defEp: 10 },
+        { key: 'es_43', name: 'Pray-Ball! ~ 노려라! 만루 홈런 ~', defEp: 12 },
+        { key: 'es_44', name: '하이랜더 철도 폭주 사건 ~ 그리고 기...', defEp: 13 },
+		{ key: 'es_45', name: '백에서 피어난 한 송이 ~정정당당하...', defEp: 15 },
+        { key: 'es_46', name: '여름 하늘의 프로미스', defEp: 28 },
+        { key: 'es_47', name: '우리는 오컬트 연구회! ~학원의 불가사...', defEp: 14  },
+        { key: 'es_48', name: '누구를 위한 예술인가 ~위작과 미학의 ...', defEp: 12 },
+        { key: 'es_49', name: '마법소녀 헤비캘리버 ~에라의 야망과 ...', defEp: 17 },
+        { key: 'es_50', name: '겨울 하늘의 르네상스 ~문화 및 교류...', defEp: 10 },
+        { key: 'es_51', name: '불인의 길 ~패션쇼 경호 임무!의 서~', defEp: 13  },
+        { key: 'es_52', name: '강철대륙 공략전', defEp: 29  },
+        { key: 'es_53', name: '키보토스 · 미확인 미스테리 ~미지의 ...', defEp: 15  },
+        { key: 'es_54', name: '람과천정', defEp: 14  },
+		{ key: 'es_36_2', name: 'Sheside outside', defEp: 21  },
+        { key: 'es_37_2', name: '월화몽소', defEp: 15  },
+        { key: 'es_38_2', name: '오욕내강', defEp: 17  },
+        { key: 'es_39_2', name: 'Serenade Promenade', defEp: 19  },
+        { key: 'es_40_2', name: '비밀의 미드나잇 파티 ~종이 울리는 술...', defEp: 15  },
+        { key: 'es_41_2', name: 'Code: BOX 밀레니엄에 다가오는 그...', defEp: 9  },
+        { key: 'es_43_2', name: 'Pray-Ball! ~ 노려라! 만루 홈런 ~', defEp: 12  },
+		{ key: 'es_45_2', name: '백에서 피어난 한 송이 ~정정당당하...', defEp: 15  },
+		{ key: 'es_27_2', name: '숨겨진 유산을 찾아서', defEp: 15  },
+        { key: 'es_28_2', name: '학원 동인 이야기', defEp: 15  },
+        { key: 'es_29_2', name: 'Trip-Trap-Train', defEp: 12  },
+        { key: 'es_30_2', name: '전뇌신춘행진곡', defEp: 10  },
+		{ key: 'es_32_2', name: '0068 오페라로부터 사랑을 담아서!', defEp: 15  }
     ];
 	
 	const miniStoryList = [
@@ -1565,6 +1582,14 @@
 		function updateOutput(id, value, outputElement) {
 			const num = value.replace(/[^0-9]/g, '');
 			const formattedNum = num ? Number(num).toLocaleString() : '';
+			
+			if (id === 'in-circle') {
+                if (value.trim() === '') {
+                    outputElement.parentElement.style.display = 'none';
+                } else {
+                    outputElement.parentElement.style.display = 'flex';
+                }
+            }
 
 			if (countFields.includes(id)) {
 				outputElement.textContent = formattedNum ? formattedNum + '회' : '';
@@ -2110,13 +2135,6 @@
     function saveCollab() {
         localStorage.setItem('ba_receipt_collab_list', JSON.stringify(savedCollabList));
         renderCollabAll();
-    }
-
-    function goToCollabInput() {
-        if(collabSearchInput) {
-            collabSearchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            collabSearchInput.focus(); 
-        }
     }
 
     renderCollabAll();
@@ -2719,27 +2737,6 @@
 	
     renderAll();
 	
-	const giftCountInput = document.getElementById('gift-count-input');
-
-    if (countInput) {
-        giftCountInput.addEventListener('input', function(e) {
-            let val = this.value.replace(/[^0-9]/g, '');
-            if (val) {
-                this.value = Number(val).toLocaleString();
-            } else {
-                this.value = '';
-            }
-        });
-        countInput.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                if (e.isComposing) return;
-                addSelectedGift();
-            }
-        });
-    }
-	
-	// --- 2026 교무일지 전용 스크립트 ---
     const journalTextFields = ['in-j-last-story', 'in-j-best-raid', 'in-j-first-student', 'in-j-last-student', 'in-j-best-gift'];
     
     let savedJournalInfo = JSON.parse(localStorage.getItem('ba_receipt_journal')) || {};
@@ -2786,7 +2783,6 @@
 
     const nickElement = document.getElementById('in-nick');
     if (nickElement) nickElement.addEventListener('input', renderJournal);
-	if (nickElement) nickElement.addEventListener('input', (e) => { const el = document.getElementById('in-nick-display'); if(el) el.textContent = e.target.value; });
     const jScheduleElement = document.getElementById('in-j-schedule');
     if (jScheduleElement) jScheduleElement.addEventListener('input', (e) => { const el = document.getElementById('in-j-schedule-display'); if(el) el.textContent = e.target.value; });
 
@@ -2856,6 +2852,43 @@
             input.value = ''; 
         };
         reader.readAsText(file);
+    }
+	
+	window.fillMainStoryMax = function() {
+        mainStoryList.forEach(item => {
+            savedMainStory[item.key + '_ch'] = item.defCh || '';
+            savedMainStory[item.key + '_ep'] = item.defEp || '';
+        });
+        localStorage.setItem('ba_receipt_main_story', JSON.stringify(savedMainStory));
+        document.getElementById('main-story-input-container').innerHTML = ''; 
+        renderMainStoryInputs();
+    }
+
+    window.fillEventStoryMax = function() {
+        eventStoryList.forEach(item => {
+            savedEventStory[item.key] = item.defEp || 12;
+        });
+        localStorage.setItem('ba_receipt_event_story', JSON.stringify(savedEventStory));
+        document.getElementById('event-story-input-container').innerHTML = '';
+        renderEventStory(); 
+    }
+
+    window.fillMiniStoryMax = function() {
+        miniStoryList.forEach(item => {
+            savedMiniStory[item.key] = item.defEp || '';
+        });
+        localStorage.setItem('ba_receipt_mini_story', JSON.stringify(savedMiniStory));
+        document.getElementById('mini-story-input-container').innerHTML = '';
+        renderMiniStoryInputs(); 
+    }
+
+    window.fillGroupStoryMax = function() {
+        groupStoryList.forEach(item => {
+            savedGroupStory[item.key] = item.defEp || '';
+        });
+        localStorage.setItem('ba_receipt_group_story', JSON.stringify(savedGroupStory));
+        document.getElementById('group-story-input-container').innerHTML = '';
+        renderGroupStoryInputs(); 
     }
 	
 </script>
