@@ -567,7 +567,7 @@
                 <button onclick="fillGroupStoryMax()" style="padding:4px 8px; font-size:14px; background:#2b6cb0; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">참선생</button>
             </div>
             <div id="group-story-input-container"></div>
-        </div>
+        </div>		
 		<div class="input-group">
             <h3>역대 콜라보 호감도 아이템</h3>
             <p style="font-size:12px; color:#666; margin:0 0 5px 0;">
@@ -585,10 +585,10 @@
                 <input type="text" id="collab-count-input" placeholder="보유 갯수" class="input-with-unit" style="width: 100px; height:32px;">
                 <button onclick="addSelectedCollab()" style="background:#333; color:white; border:none; border-radius:4px; padding:0 10px; cursor:pointer; height:32px;">+</button>
             </div>
+
             <div id="collab-manage-container" style="border-top:1px dashed #ddd; padding-top:10px; max-height: 505px; overflow-y: auto; padding-right: 5px;"></div>
 		</div>
-		
-		<div class="input-group">
+				<div class="input-group">
             <h3>나의 집무실 기록</h3>
             <div class="simple-row" style="margin-bottom: 8px;">
                 <label>컬렉션 카드 보유</label>
@@ -611,7 +611,6 @@
                 <div class="input-with-unit"><input type="text" id="in-schale-coin"><span>개</span></div>
             </div>
         </div>
-		
 		<div class="input-group single-item-box">
             <label>청휘석 소모량</label>
             <div class="input-with-unit">
@@ -1545,7 +1544,7 @@
 
     const countFields = ['in-schedule', 'in-circle-attend', 'in-crafting', 'in-bounty', 'in-special', 'in-school', 'in-drill', 'in-mission-normal', 'in-mission-normal-sweep', 'in-mission-hard', 'in-mission-hard-sweep', 'in-ticket-1', 'in-ticket-10'];
     const scoreFields = ['in-drill-max', 'in-drill-total'];
-    const unitFields = ['in-raid-coin', 'in-raid-coin-rare', 'in-grand-coin', 'in-grand-coin-rare', 'in-pvp-coin', 'in-drill-coin', 'in-pyroxene', 'in-eligma', 'in-deco-item-owned', 'in-schale-coin'];
+    const unitFields = ['in-raid-coin', 'in-raid-coin-rare', 'in-grand-coin', 'in-grand-coin-rare', 'in-pvp-coin', 'in-drill-coin', 'in-deco-item-owned', 'in-schale-coin'];
 
 	mappings.forEach(map => {
         const input = document.getElementById(map.in);
@@ -2075,13 +2074,14 @@
             div.ondragenter = (e) => e.target.classList.add('drag-over');
             div.ondragleave = (e) => e.target.classList.remove('drag-over');
 
-            div.innerHTML = `
+			div.innerHTML = `
                 <div class="drag-handle" title="드래그하여 이동">☰</div>
                 <div class="gift-info">
                     <span class="gift-name-text">${item.name}</span>
                     <span class="gift-count-text">${Number(item.count).toLocaleString()} 보유</span>
                 </div>
                 <div class="gift-btns" style="display:flex; align-items:stretch;">
+                    <button class="btn-edit-student" onclick="editCollabItem(${index})" title="수정">✎</button>
                     <button class="btn-move-gift" onclick="moveCollabUp(${index})" title="위로">▲</button>
                     <button class="btn-move-gift" onclick="moveCollabDown(${index})" title="아래로">▼</button>
                     <button class="btn-remove-gift" onclick="deleteCollabItem(${index})" title="삭제">X</button>
@@ -2304,15 +2304,14 @@
             div.ondragenter = (e) => e.target.classList.add('drag-over');
             div.ondragleave = (e) => e.target.classList.remove('drag-over');
 
-            div.innerHTML = `
+		div.innerHTML = `
 				<div class="drag-handle" title="드래그하여 이동">☰</div>
-
                 <div class="gift-info">
                     <span class="gift-name-text">${item.name}</span>
                     <span class="gift-count-text">${Number(item.count).toLocaleString()}회</span>
                 </div>
-                
                 <div class="gift-btns" style="display:flex; align-items:stretch;">
+                    <button class="btn-edit-student" onclick="editGiftItem(${index})" title="수정">✎</button>
                     <button class="btn-move-gift" onclick="moveGiftUp(${index})" title="위로">▲</button>
                     <button class="btn-move-gift" onclick="moveGiftDown(${index})" title="아래로">▼</button>
                     <button class="btn-remove-gift" onclick="removeGift(${index})" title="삭제">X</button>
@@ -2887,6 +2886,36 @@
         localStorage.setItem('ba_receipt_group_story', JSON.stringify(savedGroupStory));
         document.getElementById('group-story-input-container').innerHTML = '';
         renderGroupStoryInputs(); 
+    }
+	
+	window.editCollabItem = function(index) {
+        const item = savedCollabList[index];
+        const newCount = prompt(`[${item.name}]의 수정할 개수를 입력해주세요.`, item.count);
+        
+        if (newCount !== null) {
+            const parsed = newCount.replace(/[^0-9]/g, '');
+            if (parsed) {
+                savedCollabList[index].count = parsed;
+                saveCollab();
+            } else {
+                alert("숫자만 입력 가능합니다.");
+            }
+        }
+    }
+
+    window.editGiftItem = function(index) {
+        const item = savedGiftList[index];
+        const newCount = prompt(`[${item.name}]의 수정할 사용 횟수를 입력해주세요.`, item.count);
+        
+        if (newCount !== null) {
+            const parsed = newCount.replace(/[^0-9]/g, '');
+            if (parsed) {
+                savedGiftList[index].count = parsed;
+                saveGiftList();
+            } else {
+                alert("숫자만 입력 가능합니다.");
+            }
+        }
     }
 	
 </script>
