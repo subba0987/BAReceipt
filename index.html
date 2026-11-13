@@ -324,6 +324,25 @@
 	.drag-handle {
         margin-right: 10px !important;
     }
+	
+	.inline-blank {
+        border: none !important;
+        border-bottom: 2px solid #2b6cb0 !important;
+        background: transparent !important;
+        text-align: center;
+        padding: 0 4px !important;
+        font-family: 'NexonLv2Gothic', sans-serif;
+        font-size: 13px;
+        color: #d9534f;
+        font-weight: bold;
+        border-radius: 0 !important;
+        height: 20px;
+        transition: background 0.2s;
+    }
+    .inline-blank:focus {
+        outline: none;
+        background: #fff0f0 !important;
+    }
 
 </style>
 </head>
@@ -536,6 +555,30 @@
         </div>
 		
 		<div class="input-group">
+            <h3>나의 집무실 기록</h3>
+            <div class="simple-row" style="margin-bottom: 8px;">
+                <label>컬렉션 카드 보유</label>
+                <div class="input-with-unit"><input type="text" id="in-collection-card-owned"><span>장</span></div>
+            </div>
+            <div class="simple-row" style="margin-bottom: 8px;">
+                <label>컬렉션 카드 달성도</label>
+                <div class="input-with-unit"><input type="text" id="in-collection-card-rate"><span>%</span></div>
+            </div>
+            <div class="simple-row" style="margin-bottom: 8px;">
+                <label>치장 아이템 보유</label>
+                <div class="input-with-unit"><input type="text" id="in-deco-item-owned"><span>개</span></div>
+            </div>
+            <div class="simple-row" style="margin-bottom: 8px;">
+                <label>치장 아이템 달성도</label>
+                <div class="input-with-unit"><input type="text" id="in-deco-item-rate"><span>%</span></div>
+            </div>
+            <div class="simple-row">
+                <label>샬레 기념 주화 획득</label>
+                <div class="input-with-unit"><input type="text" id="in-schale-coin"><span>개</span></div>
+            </div>
+        </div>
+		
+		<div class="input-group">
             <h3>역대 콜라보 호감도 아이템</h3>
             <p style="font-size:12px; color:#666; margin:0 0 5px 0;">
                 콜라보 아이템을 검색해서 추가하세요.<br>
@@ -671,6 +714,55 @@
                 <span style="font-size:11px;">회</span>
             </div>
         </div>
+		
+		<div class="input-group">
+            <h3>2026년도 교무일지 (빈칸 채우기)</h3>
+            <p style="font-size:11px; color:#666; margin:0 0 10px 0;">영수증을 보며 아래 문장의 빈칸을 직접 채워주세요.</p>
+            
+            <div style="font-size: 13px; line-height: 2.2; padding: 15px; background: #f9f9f9; border: 1px solid #eee; border-radius: 5px; word-break: keep-all;">
+                선생님, 안녕하세요! 아로나입니다.<br>
+                『<span data-j-bind="in-nick"></span>』선생님과 함께한 지 어느덧 <input type="text" id="in-j-years" class="journal-input inline-blank" style="width:40px;">년째예요.<br>
+                이번에도 초대에 응해주셨네요. 이렇게 또 와주셔서 감사드려요.<br>
+                2026년이 저물기 전에, 선생님의 한 해를 아로나가 정리해 봤어요.<br>
+                조금 길지도 모르지만... 끝까지 읽어주실 거죠?<br><br>
+
+                올해 스케줄을 <input type="text" id="in-j-schedule" class="journal-input inline-blank" style="width:60px;">번 해주셨어요.<br>
+                매일 같은 시간에 학생들을 만나러 가는 일, 생각보다 어려운 일인데 말이죠.<br>
+                ...선생님은 그걸 <span id="in-j-schedule-display" style="font-weight:bold; border-bottom:1px solid #ccc; padding:0 5px; color:#d9534f;">0</span>번이나 해내셨어요.<br><br>
+
+                올해 <input type="text" id="in-j-story-cnt" class="journal-input inline-blank" style="width:50px;">편의 이야기를 끝까지 읽어주셨어요.<br>
+                마지막으로 덮으신 이야기는 「<input type="text" id="in-j-last-story" class="journal-input inline-blank" style="width:200px;">」였네요.<br>
+                어떤 결말이었는지, 저도 기억하고 있어요.<br><br>
+
+                올해 가장 빛나셨던 전장은 <input type="text" id="in-j-best-raid" class="journal-input inline-blank" style="width:120px;"> 전이었어요.<br>
+                총력전에서는 누적 <input type="text" id="in-j-raid-score" class="journal-input inline-blank" style="width:120px;">점,<br>
+                대결전에서는 누적 <input type="text" id="in-j-grand-score" class="journal-input inline-blank" style="width:120px;">점.<br>
+                키보토스가 오늘도 평화로운 건, 전부 선생님의 지휘 덕분이에요!<br><br>
+
+                제약해제결전에서는 <input type="text" id="in-j-elim-stage" class="journal-input inline-blank" style="width:40px;">단계까지 올라가셨어요.<br>
+                종합전술시험 최고 점수도 <input type="text" id="in-j-drill-score" class="journal-input inline-blank" style="width:80px;">점으로 새로 쓰셨네요.<br>
+                선생님의 한계는 대체 어디까지일까요?<br><br>
+
+                올해 소모하신 AP는 모두 <input type="text" id="in-j-ap" class="journal-input inline-blank" style="width:80px;">.<br>
+                임무를 <input type="text" id="in-j-mission-manual" class="journal-input inline-blank" style="width:60px;">번 직접 지휘하시고, <input type="text" id="in-j-mission-sweep" class="journal-input inline-blank" style="width:70px;">번은 소탕으로 정리하셨어요.<br>
+                ...그 많은 걸 전부 챙기시느라, 정말 고생 많으셨어요.<br><br>
+
+                올해 <input type="text" id="in-j-new-students" class="journal-input inline-blank" style="width:40px;">명의 새로운 학생과 만나셨어요.<br>
+                가장 먼저 인사를 나눈 건 <input type="text" id="in-j-first-student" class="journal-input inline-blank" style="width:100px;">, 가장 최근에 온 학생은 <input type="text" id="in-j-last-student" class="journal-input inline-blank" style="width:100px;">이에요.<br>
+                모두 선생님을 기다리고 있었답니다.<br><br>
+
+                모모톡으로 학생 <input type="text" id="in-j-momo-cnt" class="journal-input inline-blank" style="width:40px;">명의 인연 스토리를 함께하셨어요!<br>
+                이야기를 나누는 동안 많은 학생들이 고민을 털어놓고, 더 깊은 인연을 맺게 되었답니다. 아로나도 정말 기뻐요!<br><br>
+
+                가장 많이 건네신 선물은 「<input type="text" id="in-j-best-gift" class="journal-input inline-blank" style="width:120px;">」, 무려 <input type="text" id="in-j-best-gift-cnt" class="journal-input inline-blank" style="width:60px;">번이에요.<br>
+                받는 학생의 표정이 어땠을지, 상상만 해도 기분이 좋아지네요.<br><br>
+
+                올해 샬레 계좌에서 나간<br>
+                크레딧은 <input type="text" id="in-j-credit" class="journal-input inline-blank" style="width:130px;">이고,<br>
+                청휘석은 <input type="text" id="in-j-pyroxene" class="journal-input inline-blank" style="width:80px;">예요.<br>
+                전부 학생들을 위한 거였으니까, 아로나가 장부에 잘 적어둘게요!<br>
+            </div>
+        </div>
 
 		<button class="btn-preview" onclick="previewReceipt()">👁️ 영수증 미리보기 (새 창)</button>
         <button class="btn-save" onclick="saveReceipt()">💾 영수증 이미지로 저장하기</button>
@@ -684,14 +776,16 @@
         </div>
         <button class="btn-reset" onclick="resetAllData()">⚠️ 모든 데이터 초기화</button>
     </div>
-
+	
+	<!--/* 로고 */-->
     <div class="preview-panel">
         <div class="receipt" id="capture-area">
             <div class="header-logo">
 			<img src="logo_1.png" alt="4th Festival"></div>
             <div class="date-row"><span>DATE</span><span id="out-date"></span></div>
             <hr class="dashed-line">
-			<div class="game-logo"><img src="logo_2.png" alt="Blue Archive"></div>
+		<div class="game-logo"><img src="logo_2.png" alt="Blue Archive"></div>
+		
             <div class="data-box">
                 <div class="data-row"><span class="label">닉네임</span><span class="value" id="out-nick"></span></div>
                 <div class="data-row"><span class="label">선생님께서 처음 부임하신 날</span><span class="value" id="out-start"></span></div>
@@ -779,6 +873,32 @@
             </div>
 			
 			<div class="record-section">
+                <div class="record-title">나의 집무실 기록</div>
+                <div class="tight-list" style="margin-top: 5px;">
+                    <div class="record-row">
+                        <span class="record-label">컬렉션 카드 보유</span>
+                        <span class="record-value" id="out-collection-card-owned"></span>
+                    </div>
+                    <div class="record-row">
+                        <span class="record-label">컬렉션 카드 달성도</span>
+                        <span class="record-value" id="out-collection-card-rate"></span>
+                    </div>
+                    <div class="record-row">
+                        <span class="record-label">치장 아이템 보유</span>
+                        <span class="record-value" id="out-deco-item-owned"></span>
+                    </div>
+                    <div class="record-row">
+                        <span class="record-label">치장 아이템 달성도</span>
+                        <span class="record-value" id="out-deco-item-rate"></span>
+                    </div>
+                    <div class="record-row">
+                        <span class="record-label">샬레 기념 주화 획득</span>
+                        <span class="record-value" id="out-schale-coin"></span>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="record-section">
 				<div class="record-title">나의 재화 기록</div>
                     <div class="tight-list" style="margin-top: 5px;">
                         <div class="record-row">
@@ -840,10 +960,61 @@
                 </div>
 			</div>
 			
+            <div class="record-section">
+                <div class="record-title" style="margin-bottom: 10px;">2026년도 교무일지</div>
+                <div style="font-size: 13px; line-height: 19px; color: #000; word-break: keep-all; padding-left: 2px;">
+                    선생님, 안녕하세요! 아로나입니다.<br>
+                    『<span data-j-bind="in-nick"></span>』선생님과 함께한 지 어느덧 <span data-j-bind="in-j-years"></span>년째예요.<br>
+                    이번에도 초대에 응해주셨네요. 이렇게 또 와주셔서<br>감사드려요.<br>
+                    2026년이 저물기 전에, 선생님의 한 해를 아로나가<br>정리해 봤어요.<br>
+                    조금 길지도 모르지만... 끝까지 읽어주실 거죠?<br><br>
+
+                    올해 스케줄을 <span data-j-bind="in-j-schedule"></span>번 해주셨어요.<br>
+                    매일 같은 시간에 학생들을 만나러 가는 일, 생각보다<br>어려운 일인데 말이죠.<br>
+                    ...선생님은 그걸 <span data-j-bind="in-j-schedule"></span>번이나 해내셨어요.<br><br>
+
+                    올해 <span data-j-bind="in-j-story-cnt"></span>편의 이야기를 끝까지 읽어주셨어요.<br>
+                    마지막으로 덮으신 이야기는 「<span data-j-bind="in-j-last-story"></span>」였네요.<br>
+                    어떤 결말이었는지, 저도 기억하고 있어요.<br><br>
+
+                    올해 가장 빛나셨던 전장은 <span data-j-bind="in-j-best-raid"></span> 전이었어요.<br>
+                    총력전에서는 누적 <span data-j-bind="in-j-raid-score"></span>점,<br>
+                    대결전에서는 누적 <span data-j-bind="in-j-grand-score"></span>점.<br>
+                    키보토스가 오늘도 평화로운 건, 전부 선생님의 지휘<br>덕분이에요!<br><br>
+
+                    제약해제결전에서는 <span data-j-bind="in-j-elim-stage"></span>단계까지 올라가셨어요.<br>
+                    종합전술시험 최고 점수도 <span data-j-bind="in-j-drill-score"></span>점으로 새로<br>쓰셨네요.<br>
+                    선생님의 한계는 대체 어디까지일까요?<br><br>
+
+                    올해 소모하신 AP는 모두 <span data-j-bind="in-j-ap"></span>.<br>
+                    임무를 <span data-j-bind="in-j-mission-manual"></span>번 직접 지휘하시고, <span data-j-bind="in-j-mission-sweep"></span>번은 소탕으로<br>정리하셨어요.<br>
+                    ...그 많은 걸 전부 챙기시느라, 정말 고생 많으셨어요.<br><br>
+
+                    올해 <span data-j-bind="in-j-new-students"></span>명의 새로운 학생과 만나셨어요.<br>
+                    가장 먼저 인사를 나눈 건 <span data-j-bind="in-j-first-student"></span>, 가장 최근에 온 학생은<br><span data-j-bind="in-j-last-student"></span>이에요.<br>
+                    모두 선생님을 기다리고 있었답니다.<br><br>
+
+                    모모톡으로 학생 <span data-j-bind="in-j-momo-cnt"></span>명의 인연 스토리를 함께하셨어요!<br>
+                    이야기를 나누는 동안 많은 학생들이 고민을 털어놓고,<br>더 깊은 인연을 맺게 되었답니다. 아로나도 정말 기뻐요!<br><br>
+
+                    가장 많이 건네신 선물은 「<span data-j-bind="in-j-best-gift"></span>」, 무려<br><span data-j-bind="in-j-best-gift-cnt"></span>번이에요.<br>
+                    받는 학생의 표정이 어땠을지, 상상만 해도 기분이<br>좋아지네요.<br><br>
+
+                    올해 샬레 계좌에서 나간<br>
+                    크레딧은 <span data-j-bind="in-j-credit"></span>이고,<br>
+                    청휘석은 <span data-j-bind="in-j-pyroxene"></span>예요.<br>
+                    전부 학생들을 위한 거였으니까, 아로나가 장부에 잘<br>적어둘게요!<br><br>
+
+                    선생님, 올 한 해도 정말 고생 많으셨어요.<br>
+                    선생님이 계셔서 키보토스의 2026년은 조금 더<br>따뜻했답니다.<br>
+                    페스티벌에서는 푹 쉬시고, 즐거운 추억 많이 담아가세요.
+                </div>
+            </div>
+			
 			<hr class="dashed-line">
                 
                 <div class="footer-msg" style="text-align: center; font-size: 14px; line-height: 19px; margin: 20px 0;">
-                    블루 아카이브 4주년 행사에<br>
+                    블루 아카이브 5주년 행사에<br>
                     함께해 주셔서 감사합니다.<br>
                     앞으로도 선생님과 학생들이 걸어가는 길에<br>
                     해피 엔딩이 기다릴 수 있도록<br>
@@ -856,7 +1027,7 @@
                 </div>
                 
                 <hr class="dashed-line" style="margin-top: 35px;">
-                <!--/* 로고 */-->
+				<!--/* 로고 */-->
                 <div class="footer-logo" style="text-align: center; margin-top: 20px;">
 				<img src="logo_2.png" alt="Blue Archive" style="max-width: 100px;">
                 </div>
@@ -888,6 +1059,11 @@
         'in-mission-normal-sweep': '0',
         'in-mission-hard': '0',
         'in-mission-hard-sweep': '0',
+		'in-collection-card-owned': '0',
+        'in-collection-card-rate': '0',
+        'in-deco-item-owned': '0',
+        'in-deco-item-rate': '0',
+        'in-schale-coin': '0',
 		'in-pyroxene': '15578884844',
         'in-credit': '0',
         'in-ap': '0',
@@ -906,121 +1082,171 @@
     const defaultStudents = [];
 
 	const raidSeasons = [
-        "시즌 1 - 시로 & 쿠로 (시가전)", 
-        "시즌 2 - 헤세드 (야전)", 
-        "시즌 3 - 시로 & 쿠로 (실내전)", 
-        "시즌 4 - 헤세드 (야전)", 
-        "시즌 5 - 예로니무스 (실내전)",
-        "시즌 6 - 비나 (야전)", 
-        "시즌 7 - 시로 & 쿠로 (실내전)", 
-        "시즌 8 - 헤세드 (실내전)", 
-        "시즌 9 - KAITEN FX Mk.0 (야전)", 
-        "시즌 10 - 시로 & 쿠로 (시가전)",
-        "시즌 11 - 예로니무스 (시가전)", 
-        "시즌 12 - KAITEN FX Mk.0 (야전)", 
-        "시즌 13 - 비나 (시가전)", 
-        "시즌 14 - 페로로지라 (실내전)", 
-        "시즌 15 - KAITEN FX Mk.0 (시...",
-        "시즌 16 - 비나 (야전)", 
-        "시즌 17 - 페로로지라 (실내전)", 
-        "시즌 18 - 예로니무스 (실내전)", 
-        "시즌 19 - 헤세드 (야전)", 
-        "시즌 20 - 페로로지라 (야전)",
-        "시즌 21 - 호드 (시가전)", 
-        "시즌 22 - 시로 & 쿠로 (시가전)", 
-        "시즌 23 - KAITEN FX Mk.0 (야전)", 
-        "시즌 24 - 비나 (시가전)", 
-        "시즌 25 - 호드 (시가전)",
-        "시즌 26 - 헤세드 (실내전)", 
-        "시즌 27 - 페로로지라 (실내전)", 
-        "시즌 28 - KAITEN FX Mk.0 (시...", 
-        "시즌 29 - 예로니무스 (실내전)", 
-        "시즌 30 - 비나 (야전)",
-        "시즌 31 - 헤세드 (야전)", 
-        "시즌 32 - 시로 & 쿠로 (실내전)", 
-        "시즌 33 - 호드 (시가전)", 
-        "시즌 34 - 예로니무스 (시가전)", 
-        "시즌 35 - KAITEN FX Mk.0 (야전)",
-        "시즌 36 - 페로로지라 (야전)", 
-        "시즌 37 - 고즈 (실내전)", 
-        "시즌 38 - 시로 & 쿠로 (시가전)", 
-        "시즌 39 - 비나 (시가전)", 
-        "시즌 40 - 헤세드 (실내전)",
-        "시즌 41 - 페로로지라 (실내전)", 
-        "시즌 42 - 예로니무스 (실내전)", 
-        "시즌 43 - 시로 & 쿠로 (실내전)", 
-        "시즌 44 - 예로니무스 (시가전)", 
-        "시즌 45 - 비나 (야전)",
-        "시즌 46 - 고즈 (실내전)", 
-        "시즌 47 - 헤세드 (실내전)", 
-        "시즌 48 - 시로 & 쿠로 (시가전)", 
-        "시즌 49 - KAITEN FX Mk.0 (야전)", 
-        "시즌 50 - 페로로지라 (야전)",
-        "시즌 51 - 호드 (실내전)", 
-        "시즌 52 - 그레고리오 (실내전)", 
-        "시즌 53 - 고즈 (야전)", 
-        "시즌 54 - 호버크래프트 (야전)", 
-        "시즌 55 - 비나 (시가전)",
-        "시즌 56 - 헤세드 (야전)", 
-        "시즌 57 - 묘귀 쿠로카게 (시가전)", 
-        "시즌 58 - 호버크래프트 (야전)", 
-        "시즌 59 - 예로니무스 (실내전)", 
-        "시즌 60 - 헤세드 (실내전)",
-        "시즌 61 - 페로로지라 (실내전)", 
-        "시즌 62 - 호드 (시가전)", 
-        "시즌 63 - 고즈 (실내전)", 
-        "시즌 64 - 비나 (야전)", 
-        "시즌 65 - 페로로지라 (야전)",
-        "시즌 66 - 시로 & 쿠로 (실내전)", 
-        "시즌 67 - KAITEN FX Mk.0 (시...", 
-        "시즌 68 - 그레고리오 (실내전)", 
-        "시즌 69 - 예로니무스 (시가전)", 
-        "시즌 70 - 호버크래프트 (야전)",
-        "시즌 71 - 게부라 (야전)", 
-        "시즌 72 - 묘귀 쿠로카게 (시가전)", 
-        "시즌 73 - 호버크래프트 (야전)", 
-        "시즌 74 - 그레고리오 (실내전)"
+        "시즌 1 - 시로 & 쿠로(시가전)", 
+        "시즌 2 - 헤세드(야전)", 
+        "시즌 3 - 시로 & 쿠로(실내전)", 
+        "시즌 4 - 헤세드(야전)", 
+        "시즌 5 - 예로니무스(실내전)",
+        "시즌 6 - 비나(야전)", 
+        "시즌 7 - 시로 & 쿠로(실내전)", 
+        "시즌 8 - 헤세드(실내전)", 
+        "시즌 9 - KAITEN FX Mk.0(야전)", 
+        "시즌 10 - 시로 & 쿠로(시가전)",
+        "시즌 11 - 예로니무스(시가전)", 
+        "시즌 12 - KAITEN FX Mk.0(야전)", 
+        "시즌 13 - 비나(시가전)", 
+        "시즌 14 - 페로로지라(실내전)", 
+        "시즌 15 - KAITEN FX Mk.0(시...",
+        "시즌 16 - 비나(야전)", 
+        "시즌 17 - 페로로지라(실내전)", 
+        "시즌 18 - 예로니무스(실내전)", 
+        "시즌 19 - 헤세드(야전)", 
+        "시즌 20 - 페로로지라(야전)",
+        "시즌 21 - 호드(시가전)", 
+        "시즌 22 - 시로 & 쿠로(시가전)", 
+        "시즌 23 - KAITEN FX Mk.0(야전)", 
+        "시즌 24 - 비나(시가전)", 
+        "시즌 25 - 호드(시가전)",
+        "시즌 26 - 헤세드(실내전)", 
+        "시즌 27 - 페로로지라(실내전)", 
+        "시즌 28 - KAITEN FX Mk.0(시...", 
+        "시즌 29 - 예로니무스(실내전)", 
+        "시즌 30 - 비나(야전)",
+        "시즌 31 - 헤세드(야전)", 
+        "시즌 32 - 시로 & 쿠로(실내전)", 
+        "시즌 33 - 호드(시가전)", 
+        "시즌 34 - 예로니무스(시가전)", 
+        "시즌 35 - KAITEN FX Mk.0(야전)",
+        "시즌 36 - 페로로지라(야전)", 
+        "시즌 37 - 고즈(실내전)", 
+        "시즌 38 - 시로 & 쿠로(시가전)", 
+        "시즌 39 - 비나(시가전)", 
+        "시즌 40 - 헤세드(실내전)",
+        "시즌 41 - 페로로지라(실내전)", 
+        "시즌 42 - 예로니무스(실내전)", 
+        "시즌 43 - 시로 & 쿠로(실내전)", 
+        "시즌 44 - 예로니무스(시가전)", 
+        "시즌 45 - 비나(야전)",
+        "시즌 46 - 고즈(실내전)", 
+        "시즌 47 - 헤세드(실내전)", 
+        "시즌 48 - 시로 & 쿠로(시가전)", 
+        "시즌 49 - KAITEN FX Mk.0(야전)", 
+        "시즌 50 - 페로로지라(야전)",
+        "시즌 51 - 호드(실내전)", 
+        "시즌 52 - 그레고리오(실내전)", 
+        "시즌 53 - 고즈(야전)", 
+        "시즌 54 - 호버크래프트(야전)", 
+        "시즌 55 - 비나(시가전)",
+        "시즌 56 - 헤세드(야전)", 
+        "시즌 57 - 묘귀 쿠로카게(시가전)", 
+        "시즌 58 - 호버크래프트(야전)", 
+        "시즌 59 - 예로니무스(실내전)", 
+        "시즌 60 - 헤세드(실내전)",
+        "시즌 61 - 페로로지라(실내전)", 
+        "시즌 62 - 호드(시가전)", 
+        "시즌 63 - 고즈(실내전)", 
+        "시즌 64 - 비나(야전)", 
+        "시즌 65 - 페로로지라(야전)",
+        "시즌 66 - 시로 & 쿠로(실내전)", 
+        "시즌 67 - KAITEN FX Mk.0(시...", 
+        "시즌 68 - 그레고리오(실내전)", 
+        "시즌 69 - 예로니무스(시가전)", 
+        "시즌 70 - 호버크래프트(야전)",
+        "시즌 71 - 게부라(야전)", 
+        "시즌 72 - 묘귀 쿠로카게(시가전)", 
+        "시즌 73 - 호버크래프트(야전)", 
+        "시즌 74 - 그레고리오(실내전)",
+		"시즌 75 - 게부라(야전)",
+        "시즌 76 - 고즈(실내전)",
+        "시즌 77 - 호드(시가전)",
+        "시즌 78 - 페로로지라(야전)",
+        "시즌 79 - 게부라(야전)",
+        "시즌 80 - 예소드(시가전)",
+        "시즌 81 - 묘귀 쿠로카게(시가전)",
+        "시즌 82 - 호버크래프트(야전)",
+        "시즌 83 - 비나(야전)",
+        "시즌 84 - 고즈(야전)",
+        "시즌 85 - KAITEN FX Mk.0(시...",
+        "시즌 86 - 드럼통 게(시가전)"
+		
     ];
 
     const grandRaidSeasons = [
-        "시즌 1 - 페로로지라 (야전)", 
-		"시즌 2 - 시로 & 쿠로 (실내전)", 
-		"시즌 3 - KAITEN FX Mk.0 (...",
-        "시즌 4 - 호드 (시가전)", 
-		"시즌 5 - 고즈 (야전)", 
-		"시즌 6 - 시로 & 쿠로 (시가전)",
-        "시즌 7 - KAITEN FX Mk.0 (...", 
-		"시즌 8 - 비나 (시가전)", 
-		"시즌 9 - 그레고리오 (실내전)",
-        "시즌 10 - 예로니무스 (시가전)", 
-		"시즌 11 - 호버크래프트 (야전)", 
-		"시즌 12 - 시로 & 쿠로 (실내전)",
-        "시즌 13 - 고즈 (야전)", 
-		"시즌 14 - 페로로지라 (야전)", 
-		"시즌 15 - 묘귀 쿠로카게 (시가전)",
-        "시즌 16 - 헤세드 (야전)", 
-		"시즌 17 - 비나 (시가전)", 
-		"시즌 18 - KAITEN FX Mk.0 (...",
-        "시즌 19 - 그레고리오 (실내전)", 
-		"시즌 20 - 비나 (야전)", 
-		"시즌 21 - 헤세드 (실내전)",
-        "시즌 22 - 시로 & 쿠로 (실내전)"
+        "시즌 1 - 페로로지라(야전)", 
+		"시즌 2 - 시로 & 쿠로(실내전)", 
+		"시즌 3 - KAITEN FX Mk.0(...",
+        "시즌 4 - 호드(시가전)", 
+		"시즌 5 - 고즈(야전)", 
+		"시즌 6 - 시로 & 쿠로(시가전)",
+        "시즌 7 - KAITEN FX Mk.0(...", 
+		"시즌 8 - 비나(시가전)", 
+		"시즌 9 - 그레고리오(실내전)",
+        "시즌 10 - 예로니무스(시가전)", 
+		"시즌 11 - 호버크래프트(야전)", 
+		"시즌 12 - 시로 & 쿠로(실내전)",
+        "시즌 13 - 고즈(야전)", 
+		"시즌 14 - 페로로지라(야전)", 
+		"시즌 15 - 묘귀 쿠로카게(시가전)",
+        "시즌 16 - 헤세드(야전)", 
+		"시즌 17 - 비나(시가전)", 
+		"시즌 18 - KAITEN FX Mk.0(...",
+        "시즌 19 - 그레고리오(실내전)", 
+		"시즌 20 - 비나(야전)", 
+		"시즌 21 - 헤세드(실내전)",
+        "시즌 22 - 시로 & 쿠로(실내전)",
+		"시즌 23 - 예로니무스(시가전)", 
+        "시즌 24 - KAITEN FX Mk.0(...", 
+		"시즌 25 - 비나(시가전)",
+        "시즌 26 - 헤세드(야전)",
+        "시즌 27 - 시로 & 쿠로(실내전)",
+        "시즌 28 - 예로니무스(시가전)",
+        "시즌 29 - KAITEN FX Mk.0(...",
+        "시즌 30 - 시로 & 쿠로(시가전)",
+        "시즌 31 - 예로니무스(시가전)",
+        "시즌 32 - 페로로지라(야전)",
+        "시즌 33 - 묘귀 쿠로카게(시가전)",
+        "시즌 34 - 호버크래프트(야전)"
     ];
 
     const eliminationRaidSeasons = [
-        "시즌 1 - 세트의 분노 (특수장갑)", "시즌 2 - 세트의 분노 (경장갑)", "시즌 3 - 세트의 분노 (특수장갑)",
-        "시즌 4 - 세트의 분노 (경장갑)", "시즌 5 - 세트의 분노 (특수장갑)", "시즌 6 - 세트의 분노 (경장갑)",
-        "시즌 7 - 세트의 분노 (특수장갑)", "시즌 8 - 호크마 (특수장갑)", "시즌 9 - 세트의 분노 (경장갑)",
-        "시즌 10 - 호크마 (중장갑)", "시즌 11 - 세트의 분노 (특수장갑)", "시즌 12 - 호크마",
-        "시즌 13 - 세트의 분노 (경장갑)", "시즌 14 - 티페레트 (탄력장갑)", "시즌 15 - 호크마 (중장갑)"
+        "시즌 1 - 세트의 분노 (특수장갑)",
+		"시즌 2 - 세트의 분노 (경장갑)",
+		"시즌 3 - 세트의 분노 (특수장갑)",
+        "시즌 4 - 세트의 분노 (경장갑)",
+		"시즌 5 - 세트의 분노 (특수장갑)",
+		"시즌 6 - 세트의 분노 (경장갑)",
+        "시즌 7 - 세트의 분노 (특수장갑)",
+		"시즌 8 - 호크마 (특수장갑)",
+		"시즌 9 - 세트의 분노 (경장갑)",
+        "시즌 10 - 호크마 (중장갑)",
+		"시즌 11 - 세트의 분노 (특수장갑)",
+		"시즌 12 - 호크마 (특수장갑)",
+        "시즌 13 - 세트의 분노 (경장갑)",
+		"시즌 14 - 티페레트 (탄력장갑)",
+		"시즌 15 - 호크마 (중장갑)",
+		"시즌 16 - 세트의 분노 (경장갑)",
+        "시즌 17 - 티페레트 (중장갑)",
+        "시즌 18 - 호크마 (특수장갑)",
+        "시즌 19 - 세트의 분노 (특수장갑)",
+        "시즌 20 - 티페레트 (탄력장갑)",
+        "시즌 21 - 호크마 (증장갑)",
+        "시즌 22 - 세트의 분노 (경장갑)",
+        "시즌 23 - 호크마 (특수장갑)",
+        "시즌 24 - 세트의 분노 (특수장갑)",
+        "시즌 25 - 티페레트 (탄력장갑)",
+        "시즌 26 - 호크마 (중장갑)",
+        "시즌 27 - 세트의 분노 (특수장갑)",
+        "시즌 28 - 티페레트 (탄력장갑)"
     ];
 
     const mainStoryList = [
+		{ key: 'ms_0', name: '0. 총학생회 편' },
         { key: 'ms_1', name: '1. 대책위원회 편' },
         { key: 'ms_2', name: '2. 태엽 감는 꽃의 파반느 편' },
         { key: 'ms_3', name: '3. 에덴조약 편' },
         { key: 'ms_4', name: '4. 카르바노그의 토끼 편' },
         { key: 'ms_5', name: '5. 백화요란 편' },
+		{ key: 'ms_7', name: '6. 흘러간 시간들의 오라토리오 편' },
         { key: 'ms_6', name: 'Final. 그리고 모든 기적이 시작 되...' }
     ];
 
@@ -1068,7 +1294,30 @@
         { key: 'es_41', name: 'Code: BOX 밀레니엄에 다가오는 그...' },
         { key: 'es_42', name: '팬데믹 해저드 ~ 기적의 팬케이크 ~' },
         { key: 'es_43', name: 'Pray-Ball! ~ 노려라! 만루 홈런 ~' },
-        { key: 'es_44', name: '하이랜더 철도 폭주 사건 ~ 그리고 기...' }
+        { key: 'es_44', name: '하이랜더 철도 폭주 사건 ~ 그리고 기...' },
+		{ key: 'es_45', name: '백에서 피어난 한 송이 ~정정당당하...' },
+        { key: 'es_46', name: '여름 하늘의 프로미스' },
+        { key: 'es_47', name: '우리는 오컬트 연구회! ~학원의 불가사...' },
+        { key: 'es_48', name: '누구를 위한 예술인가 ~위작과 미학의 ...' },
+        { key: 'es_49', name: '마법소녀 헤비캘리버 ~에라의 야망과 ...' },
+        { key: 'es_50', name: '겨울 하늘의 르네상스 ~문화 및 교류...' },
+        { key: 'es_51', name: '불인의 길 ~패션쇼 경호 임무!의 서~' },
+        { key: 'es_52', name: '강철대륙 공략전' },
+        { key: 'es_53', name: '키보토스 · 미확인 미스테리 ~미지의 ...' },
+        { key: 'es_54', name: '람과천정' },
+		{ key: 'es_36_2', name: 'Sheside outside' },
+        { key: 'es_37_2', name: '월화몽소' },
+        { key: 'es_38_2', name: '오욕내강' },
+        { key: 'es_39_2', name: 'Serenade Promenade' },
+        { key: 'es_40_2', name: '비밀의 미드나잇 파티 ~종이 울리는 술...' },
+        { key: 'es_41_2', name: 'Code: BOX 밀레니엄에 다가오는 그...' },
+        { key: 'es_43_2', name: 'Pray-Ball! ~ 노려라! 만루 홈런 ~' },
+		{ key: 'es_45_2', name: '백에서 피어난 한 송이 ~정정당당하...' },
+		{ key: 'es_27_2', name: '숨겨진 유산을 찾아서' },
+        { key: 'es_28_2', name: '학원 동인 이야기' },
+        { key: 'es_29_2', name: 'Trip-Trap-Train' },
+        { key: 'es_30_2', name: '전뇌신춘행진곡' },
+		{ key: 'es_32_2', name: '0068 오페라로부터 사랑을 담아서!' }
     ];
 	
 	const miniStoryList = [
@@ -1079,7 +1328,13 @@
         { key: 'mn_5', name: '주인 잃은 선물', defEp: 3 },
         { key: 'mn_6', name: '어느 2월 19일의 기록', defEp: 3 },
         { key: 'mn_7', name: '미식과 쿠키. 그리고 구호', defEp: 2 },
-        { key: 'mn_8', name: '어쩌다 마주친 그대', defEp: 2 }
+        { key: 'mn_8', name: '어쩌다 마주친 그대', defEp: 2 },
+		{ key: 'mn_9', name: '살벌! 망량즈 나이트!', defEp: 3 },
+		{ key: 'mn_10', name: '그러나 사감대는 달린다', defEp: 2 },
+		{ key: 'mn_11', name: '수동기의 끝', defEp: 2 },
+		{ key: 'mn_12', name: '칸바라 미스즈의 우울', defEp: 2 },
+		{ key: 'mn_13', name: 'ON AIR: 게헨나', defEp: 2 },
+		{ key: 'mn_14', name: '잡초는 홀로 피지 않는다', defEp: 5 }
     ];
 
     const groupStoryList = [
@@ -1107,28 +1362,101 @@
         { key: 'gr_22', name: '음양부', defEp: 2 },
         { key: 'gr_23', name: '트레이닝부', defEp: 3 },
         { key: 'gr_24', name: '현룡문', defEp: 3 },
-        { key: 'gr_25', name: '온천개발부', defEp: 2 }
+        { key: 'gr_25', name: '온천개발부', defEp: 2 },
+		{ key: 'gr_26', name: '티파티', defEp: 3 }
     ];
 	
 	const collabOptionsList = [
-		"맘스터치 기념 카드", "맘스터치 기념 세트", "무신사 기념 카드", "오케스트라 기념 티켓", "이디야커피 기념 티켓",
-		"파파존스 기념 카드", "프랭크 버거 기념 카드", "대한적십자사 기념 카드",	"넥슨 30주년 기념 카드", "달콤커피 기념 카드",
-		"사운드 아카이브 기념 티켓", "현대백화점 PEER 기념 카드", "GS25 기념 도시락", "GS25 기념 카드","하츠네 미쿠의 포토 카드"
+		"맘스터치 기념 카드",
+		"맘스터치 기념 세트",
+		"피크닉 기념 스위트 드링크",
+		"무신사 기념 카드",
+		"오케스트라 기념 티켓",
+		"이디야커피 기념 티켓",
+		"파파존스 기념 카드",
+		"프랭크 버거 기념 카드",
+		"대한적십자사 기념 카드",
+		"대한적십자사 나눔이 카드",
+		"넥슨 30주년 기념 카드",
+		"달콤커피 기념 카드",
+		"사운드 아카이브 기념 티켓",
+		"현대백화점 PEER 기념 카드",
+		"GS25 기념 도시락",
+		"GS25 기념 카드",
+		"롯데시네마 기념 콤보",
+		"하츠네 미쿠의 포토 카드"
     ];
 	
     const giftOptionsList = [
-		"웨이브캣 베개", "페로로 휠 슬라이드", "에이~팟 프로", "금단의 연애 ~허락되지 않아서, 더욱 아...", "게임 잡지 『히트걸즈』",
-        "체리로즈 립글로즈", "피부까지 투명해지는 BB크림", "밀리터리 3종 위장용 파운데이션", "고급 쿠키 세트", "<총, 귀여움, 청춘>",
-		"천체망원경", "게임걸 컬러 복각판", "MX-레이션 C형 디저트 맛", "말차맛 라무네", "젤리즈 쿠션", 
-        "초절 토끼 탐정 ~안개로 가려진 온천 미...", "O-오피트", "매장금의 지도", "코스프레용 뱅뱅이 안경",
-		"세상에서 가장 쓸데없는 기계", "리본이 달린 곰인형", "영화 예매권", "30색 물감 세트", "고전 시집", "귀여운 그릇 세트",
-        "두뇌개발용 퍼즐 큐브", "대형 홀 케이크", "고급 뷔페 초대권", "식충식물 화분", "비싸보이는 금박 욕망의 항아리", "태엽장치 오르골", "자수가 놓인 손수건", "백과사전",
-        "건강보조식품", "여름용 튜브", "레이스 베개", "스트리트 오브 불량배 1권", "사무엘라 <더 비욘드>", "고풍스러운 달걀 공예품", "밀피유의 정통 파르페",
-        "에이~북 레어", "세련된 머리빗", "영양가득 종합 비타민 젤리", "최고급 단풍나무 분재", "반짇고리 키트", "음악 연주회 입장권", "하루 세 번 덤벨 세트", "보드 게임 <더 인생>",
-		"아름다운 꽃다발","반짝이는 꽃다발","싱그러운 꽃다발","하츠네 미쿠의 포토 카드",
-		"맘스터치 기념 카드", "맘스터치 기념 세트", "무신사 기념 카드", "오케스트라 기념 티켓", "이디야커피 기념 티켓",
-		"파파존스 기념 카드", "프랭크 버거 기념 카드", "대한적십자사 기념 카드",	"넥슨 30주년 기념 카드", "달콤커피 기념 카드",
-		"사운드 아카이브 기념 티켓", "현대백화점 PEER 기념 카드", "GS25 기념 도시락", "GS25 기념 카드"
+		"웨이브캣 베개",
+		"페로로 휠 슬라이드",
+		"에이~팟 프로",
+		"금단의 연애 ~허락되지 않아서, 더욱 아...",
+		"게임 잡지 『히트걸즈』",
+        "체리로즈 립글로즈",
+		"피부까지 투명해지는 BB크림",
+		"밀리터리 3종 위장용 파운데이션",
+		"고급 쿠키 세트",
+		"<총, 귀여움, 청춘>",
+		"천체망원경",
+		"게임걸 컬러 복각판",
+		"MX-레이션 C형 디저트 맛",
+		"말차맛 라무네",
+		"젤리즈 쿠션", 
+        "초절 토끼 탐정 ~안개로 가려진 온천 미...",
+		"O-오피트",
+		"매장금의 지도",
+		"코스프레용 뱅뱅이 안경",
+		"세상에서 가장 쓸데없는 기계",
+		"리본이 달린 곰인형",
+		"영화 예매권",
+		"30색 물감 세트",
+		"고전 시집",
+		"귀여운 그릇 세트",
+        "두뇌개발용 퍼즐 큐브",
+		"대형 홀 케이크",
+		"고급 뷔페 초대권",
+		"식충식물 화분",
+		"비싸보이는 금박 욕망의 항아리",
+		"태엽장치 오르골",
+		"자수가 놓인 손수건",
+		"백과사전",
+        "건강보조식품",
+		"여름용 튜브",
+		"레이스 베개",
+		"스트리트 오브 불량배 1권",
+		"사무엘라 <더 비욘드>",
+		"고풍스러운 달걀 공예품",
+		"밀피유의 정통 파르페",
+        "에이~북 레어",
+		"세련된 머리빗",
+		"영양가득 종합 비타민 젤리",
+		"최고급 단풍나무 분재",
+		"반짇고리 키트",
+		"음악 연주회 입장권",
+		"하루 세 번 덤벨 세트",
+		"보드 게임 <더 인생>",
+		"아름다운 꽃다발",
+		"반짝이는 꽃다발",
+		"싱그러운 꽃다발",
+		"하츠네 미쿠의 포토 카드",
+		"맘스터치 기념 카드",
+		"맘스터치 기념 세트",
+		"무신사 기념 카드",
+		"오케스트라 기념 티켓",
+		"이디야커피 기념 티켓",
+		"파파존스 기념 카드",
+		"프랭크 버거 기념 카드",
+		"대한적십자사 기념 카드",
+		"대한적십자사 나눔이 카드",
+		"넥슨 30주년 기념 카드",
+		"달콤커피 기념 카드",
+		"사운드 아카이브 기념 티켓",
+		"롯데시네마 기념 콤보",
+		"현대백화점 PEER 기념 카드",
+		"GS25 기념 도시락",
+		"GS25 기념 카드",
+		"피크닉 기념 스위트 드링크",
     ];
 
     let studentData = JSON.parse(localStorage.getItem('ba_receipt_students')) || defaultStudents;
@@ -1158,7 +1486,12 @@
         { in: 'in-raid-coin', out: 'out-raid-coin' }, { in: 'in-raid-coin-rare', out: 'out-raid-coin-rare' },
         { in: 'in-grand-coin', out: 'out-grand-coin' }, { in: 'in-grand-coin-rare', out: 'out-grand-coin-rare' },
         { in: 'in-pvp-coin', out: 'out-pvp-coin' }, { in: 'in-drill-coin', out: 'out-drill-coin' }, { in: 'in-mastery', out: 'out-mastery' },
-        { in: 'in-ticket-1', out: 'out-ticket-1' }, { in: 'in-ticket-10', out: 'out-ticket-10' }
+        { in: 'in-ticket-1', out: 'out-ticket-1' }, { in: 'in-ticket-10', out: 'out-ticket-10' },
+		{ in: 'in-collection-card-owned', out: 'out-collection-card-owned' },
+        { in: 'in-collection-card-rate', out: 'out-collection-card-rate' },
+        { in: 'in-deco-item-owned', out: 'out-deco-item-owned' },
+        { in: 'in-deco-item-rate', out: 'out-deco-item-rate' },
+        { in: 'in-schale-coin', out: 'out-schale-coin' },
     ];
 	
 	const hourInput = document.getElementById('in-playtime-hour');
@@ -1193,11 +1526,11 @@
         minInput.addEventListener('input', updatePlayTime);
     }
 
-	const textFields = ['in-date', 'in-nick', 'in-start', 'in-circle'];
+	const textFields = ['in-date', 'in-nick', 'in-start', 'in-circle', 'in-collection-card-rate', 'in-deco-item-rate'];
 
     const countFields = ['in-schedule', 'in-circle-attend', 'in-crafting', 'in-bounty', 'in-special', 'in-school', 'in-drill', 'in-mission-normal', 'in-mission-normal-sweep', 'in-mission-hard', 'in-mission-hard-sweep', 'in-ticket-1', 'in-ticket-10'];
     const scoreFields = ['in-drill-max', 'in-drill-total'];
-    const unitFields = ['in-raid-coin', 'in-raid-coin-rare', 'in-grand-coin', 'in-grand-coin-rare', 'in-pvp-coin', 'in-drill-coin', 'in-pyroxene', 'in-eligma'];
+    const unitFields = ['in-raid-coin', 'in-raid-coin-rare', 'in-grand-coin', 'in-grand-coin-rare', 'in-pvp-coin', 'in-drill-coin', 'in-pyroxene', 'in-eligma', 'in-deco-item-owned', 'in-schale-coin'];
 
 	mappings.forEach(map => {
         const input = document.getElementById(map.in);
@@ -1255,7 +1588,13 @@
 				outputElement.textContent = formattedNum ? `${formattedNum}크레딧 포인트` : '';
 			} else if (id === 'in-ap') {
 				outputElement.textContent = formattedNum ? `AP ${formattedNum}` : '';
-			} 
+			} else if (id === 'in-deco-item' || id === 'in-schale-coin') {
+                outputElement.textContent = formattedNum ? formattedNum + '개' : '';
+            } else if (id === 'in-collection-card-owned') {
+                outputElement.textContent = formattedNum ? formattedNum + '장' : '';
+            } else if (id === 'in-collection-card-rate' || id === 'in-deco-item-rate') {
+                outputElement.textContent = value ? value + '%' : '';
+            }
 			else {
 				outputElement.textContent = value;
 			}
@@ -2296,6 +2635,7 @@
             localStorage.removeItem('ba_receipt_group_story');
 			localStorage.removeItem('ba_receipt_collab_list');
 			localStorage.removeItem('ba_receipt_gift_list_v2');
+			localStorage.removeItem('ba_receipt_journal');
             location.reload();
         }
     }
@@ -2399,6 +2739,59 @@
         });
     }
 	
+	// --- 2026 교무일지 전용 스크립트 ---
+    const journalTextFields = ['in-j-last-story', 'in-j-best-raid', 'in-j-first-student', 'in-j-last-student', 'in-j-best-gift'];
+    
+    let savedJournalInfo = JSON.parse(localStorage.getItem('ba_receipt_journal')) || {};
+
+    function renderJournal() {
+        document.querySelectorAll('[data-j-bind]').forEach(el => {
+            const key = el.getAttribute('data-j-bind');
+            
+            if (key === 'in-nick') {
+                const nickInput = document.getElementById('in-nick');
+                el.textContent = nickInput ? nickInput.value : '';
+                return;
+            }
+
+            let val = savedJournalInfo[key] || '';
+            if (!journalTextFields.includes(key)) {
+                const num = val.toString().replace(/[^0-9]/g, '');
+                val = num ? Number(num).toLocaleString() : '';
+            }
+            el.textContent = val;
+        });
+    }
+
+    document.querySelectorAll('.journal-input').forEach(input => {
+        const key = input.id;
+        
+        let val = savedJournalInfo[key] || '';
+        if (!journalTextFields.includes(key)) {
+            const num = val.toString().replace(/[^0-9]/g, '');
+            if(num) val = Number(num).toLocaleString();
+        }
+        input.value = val;
+
+        input.addEventListener('input', (e) => {
+            if (!journalTextFields.includes(key)) {
+                const raw = e.target.value.replace(/[^0-9]/g, '');
+                if (raw) e.target.value = Number(raw).toLocaleString();
+            }
+            savedJournalInfo[key] = e.target.value;
+            localStorage.setItem('ba_receipt_journal', JSON.stringify(savedJournalInfo));
+            renderJournal();
+        });
+    });
+
+    const nickElement = document.getElementById('in-nick');
+    if (nickElement) nickElement.addEventListener('input', renderJournal);
+	if (nickElement) nickElement.addEventListener('input', (e) => { const el = document.getElementById('in-nick-display'); if(el) el.textContent = e.target.value; });
+    const jScheduleElement = document.getElementById('in-j-schedule');
+    if (jScheduleElement) jScheduleElement.addEventListener('input', (e) => { const el = document.getElementById('in-j-schedule-display'); if(el) el.textContent = e.target.value; });
+
+    renderJournal();
+	
     function downloadBackup() {
         const backupData = {
             basic: localStorage.getItem('ba_receipt_basic'),
@@ -2412,7 +2805,8 @@
             mini: localStorage.getItem('ba_receipt_mini_story'),
             group: localStorage.getItem('ba_receipt_group_story'),
             collab: localStorage.getItem('ba_receipt_collab_list'),
-            gift: localStorage.getItem('ba_receipt_gift_list_v2')
+            gift: localStorage.getItem('ba_receipt_gift_list_v2'),
+			journal: localStorage.getItem('ba_receipt_journal')
         };
 
         const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupData));
@@ -2450,7 +2844,8 @@
                     if(data.group) localStorage.setItem('ba_receipt_group_story', data.group);
                     if(data.collab) localStorage.setItem('ba_receipt_collab_list', data.collab);
                     if(data.gift) localStorage.setItem('ba_receipt_gift_list_v2', data.gift);
-                    
+                    if(data.journal) localStorage.setItem('ba_receipt_journal', data.journal);
+					
                     alert("데이터 복구 완료!");
                     location.reload();
                 }
@@ -2465,6 +2860,4 @@
 	
 </script>
 </body>
-
 </html>
-
